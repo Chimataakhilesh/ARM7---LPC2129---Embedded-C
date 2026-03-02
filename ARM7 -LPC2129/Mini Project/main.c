@@ -23,9 +23,9 @@ char user[15];
 
 int current_voter_index = -1;
 
-static int DMK = 0;
-static int ADMK = 0;
-static int TVK = 0;
+static int DDD = 0;
+static int AAAA = 0;
+static int TTT= 0;
 
 static char verify_shown = 0;
 static char vote_shown = 0;
@@ -139,9 +139,9 @@ while(1)
          if(!vote_shown)
 				 {
 						LCD_COMMAND(0x01);
-						LCD_STRING("1.DMK 2.ADMK");         // Displaying the Parties Names
+						LCD_STRING("1.DDD 2.AAAA");         // Displaying the Parties Names
 						LCD_COMMAND(0xC0);
-						LCD_STRING("3.TVK 4.RESULTS");
+						LCD_STRING("3.TTT 4.RESULTS");
 						vote_shown = 1;
 					}
     }
@@ -160,9 +160,9 @@ while(1)
 
         if(strcmp(user, verified_id) == 0)
         {
-            if(selected_party == 1) DMK++;
-            if(selected_party == 2) ADMK++;         // Selected party is counted
-            if(selected_party == 3) TVK++;
+            if(selected_party == 1) DDD++;
+            if(selected_party == 2) AAAA++;         // Selected party is counted
+            if(selected_party == 3) TTT++;
 					 
 					  voted[current_voter_index] = 1;         // Updating the Candidate ID after Voting
 
@@ -190,14 +190,14 @@ while(1)
       LCD_STRING("RESULTS");
       LCD_COMMAND(0xC0);
 
-        if((DMK == ADMK) && (DMK == TVK))           // Winning Party is Displayed
+        if((DDD == AAAA) && (DDD == TTT))           // Winning Party is Displayed
             LCD_STRING("DRAW");
-        else if((DMK > ADMK) && (DMK > TVK))
-            LCD_STRING("DMK WINS");
-        else if((ADMK > DMK) && (ADMK > TVK))
-            LCD_STRING("ADMK WINS");
+        else if((DDD > AAAA) && (DDD > TTT))
+            LCD_STRING("DDD WINS");
+        else if((AAAA > DDD) && (AAAA > TTT))
+            LCD_STRING("AAAA WINS");
         else
-            LCD_STRING("TVK WINS");
+            LCD_STRING("TTT WINS");
 			while(1);
 		}
 }
@@ -281,3 +281,4 @@ void EINT_config(void)          // EXTERNAL INTERRUPT Configuration
 	EXTPOLAR = 0x00;         // Falling Edge
 	VICIntEnable = 1<<14|1<<15|1<<16|1<<17;         // Enable Intrrupts
 }
+
